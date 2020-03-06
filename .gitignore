@@ -1,0 +1,8 @@
+.idea/
+vendor/
+app/
+*.env
+gen-*
+RemoteService/
+/.sass-cache/
+/client/react/node_modules/

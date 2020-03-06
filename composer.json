@@ -1,0 +1,50 @@
+{
+  "name": "twodee/WebHunt",
+  "type": "application",
+  "homepage": "https://github.com/2dsharp/WebHunt",
+
+  "authors": [
+    {
+      "name": "Dedipyaman Das",
+      "email": "2d@twodee.me",
+      "role": "Developer"
+    }
+  ],
+
+  "autoload": {
+    "psr-4": {
+      "WebHunt\\": "src/"
+    }
+  },
+
+  "autoload-dev": {
+    "psr-4": {
+      "WebHunt\\UnitTest\\" : "tests/UnitTests/"
+    }
+  },
+  "require": {
+    "php": ">=7.4",
+    "ext-pdo": "*",
+    "ext-openssl": "*",
+    "psr/log": "1.*",
+    "ext-mbstring": "*",
+    "twig/twig": "^2.0",
+    "symfony/http-foundation": "^4.2",
+    "nikic/fast-route": "^1.2",
+    "rdlowrey/auryn": "^1.4",
+    "symfony/config": "^3.2",
+    "monolog/monolog": "^1.24",
+    "vlucas/phpdotenv": "^3.4",
+    "ocramius/proxy-manager": "^2.2",
+    "ext-json": "*"
+  },
+
+  "config": {
+    "platform": {
+      "php": "7.4.0RC4"
+    },
+    "platform-dev": {
+      "php": "7.4.0RC4"
+    }
+  }
+}
