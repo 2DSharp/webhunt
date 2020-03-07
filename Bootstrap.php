@@ -7,8 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-header("Access-Control-Allow-Origin: *");
-setcookie('sss');
 use Auryn\Injector;
 
 use FastRoute\Dispatcher;
@@ -18,7 +16,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use function FastRoute\simpleDispatcher;
-
 require_once __DIR__ . '/vendor/autoload.php';
 /**
  * @var Injector $injector
@@ -49,13 +46,9 @@ $routeDefinitionCallback = function (RouteCollector $r) {
 $dispatcher = simpleDispatcher($routeDefinitionCallback);
 
 $routeInfo = $dispatcher->dispatch($request->getMethod(), $request->getPathInfo());
-
 switch ($routeInfo[0]) {
     case Dispatcher::NOT_FOUND:
         $response->setContent('404 - Page not found');
-        $className = '\Vitopia\View\StaticPage';
-        $class = $injector->make($className);
-        $response = $class->fileNotFound();
         $response->send();
         break;
     case Dispatcher::METHOD_NOT_ALLOWED:

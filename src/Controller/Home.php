@@ -9,8 +9,11 @@
  */
 namespace WebHunt\Controller;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Twig\Environment;
 
 class Home
 {
@@ -18,15 +21,30 @@ class Home
      * @var Session
      */
     private Session $session;
+    /**
+     * @var Environment
+     */
+    private Environment $twig;
 
-    public function __construct(Session $session)
+    public function __construct(Session $session, Environment $twig)
     {
         $this->session = $session;
+        $this->twig = $twig;
     }
 
     public function main(Request $request)
     {
-        $this->session->set('lol', 'ss');
-        echo $this->session->get('lol');
+        if ($this->session->get('id', 'x') == 'x') {
+            return new RedirectResponse('/');
+        }
+       return new Response($this->twig->render('index.html'));
+    }
+
+    public function loggedIn(Request $request)
+    {
+        if ($this->session->get('id', 'x') != 'x') {
+            return new RedirectResponse('/level');
+        }
+        return new Response($this->twig->render('index.html'));
     }
 }

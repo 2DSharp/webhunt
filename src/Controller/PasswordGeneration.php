@@ -37,8 +37,9 @@ class PasswordGeneration
 
     public function generateMap(Request $request)
     {
+        echo "hoo";
         $creds = [];
-        for ($i = 0; $i < 60; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $rand = $this->randomPassword();
             array_push($creds, $rand);
             echo $rand . "<p>";

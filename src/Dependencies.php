@@ -12,7 +12,11 @@ use Auryn\Injector;
 use PDO;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use Predis\Client;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Thrift\Transport\TFramedTransport;
+use Twig;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use WebHunt\Component\FallbackExceptionHandler;
@@ -23,10 +27,6 @@ use WebHunt\Contract\Factory\QueryObjectFactoryInterface;
 use WebHunt\Factory\MapperFactory;
 use WebHunt\Factory\QueryObjectFactory;
 use WebHunt\Model\RemoteService\Romeo\RomeoClient;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Thrift\Transport\TFramedTransport;
-use Twig;
 use function Skletter\Factory\addTwigGlobals;
 use function WebHunt\Factory\buildLazyLoader;
 use function WebHunt\Factory\buildPredis;
@@ -47,7 +47,7 @@ $injector->delegate(Request::class,  function (): Request {
     $obj = Request::createFromGlobals();
     return $obj;
 });
-$templatesDir = __DIR__ . '/../templates';
+$templatesDir = __DIR__ . '/../templates/';
 $templatesCacheDir = __DIR__ . '/../app/cache/templates';
 function buildTwig(string $templatesDir, string $cacheDir)
 {
